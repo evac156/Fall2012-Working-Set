@@ -1,4 +1,4 @@
-Fall2012-Working-Set
-====================
+RubyFall2012
+============
 
-My working set for the Fall 2012 Ruby class. Work I don't want to lose, but doesn't go to the shared repository.
+Class materials, homework, and solutions for the Fall 2012 Ruby course
