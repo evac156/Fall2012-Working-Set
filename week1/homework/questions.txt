@@ -1,0 +1,43 @@
+Please read: 
+Chapter 3 Classes, Objects, and Variables 
+p.90-94 Strings
+
+1. What is an object?
+<<<<<<< HEAD
+Often described as "an encapsulation of state and behavior." An object's state is a collection of properties (usually the values of its instance variables). Behavior is defined by the methods of that object, which allow reading and modification of its properties, or allow one object to act upon another. Encapsulation means that the methods and properties are bundled together, and access to them is controlled by the object's defined interface.
+
+2. What is a variable?
+A variable is a named location which references an object. Assigning a value to a variable just gives it a reference to an object, and subsequent uses of the variable dereference the same object (until a new assignment occurs). Instance variables within a class define the state of objects of that class: Any object which is an instance of the class has all the same variables, but with its own distinct values assigned to them.
+
+3. What is the difference between an object and a class?
+A class is a definition of the states and behaviors an object will have. It is a template for objects. An object instantiates a class: it represents a specific concrete instance, with a specific state. When a program runs, it uses class definitions as rules to create objects in a specific state, and then operates on the instantiated objects.
+
+4. What is a String?
+The String is one of the basic classes of Ruby. It consists of a sequence of characters and an encoding type (and probably some other overhead that we usually don't care about). The String class includes over 100 methods, giving us ways to slice, dice, concatenate, manipulate, and query the properties of a String object.
+
+5. What are three messages that I can send to a string object? Hint: think methods
+Ones that we used in the accompanying exercise: length, encoding, and split. Also used concatenation via the '+' operator, which doesn't look like the normal method syntax, but is probably calling a concat message behind the scenes.
+
+6. What are two ways of defining a String literal? Bonus: What is the difference between the two?
+String literals can be defined by enclosing the string in either single quotes ('abc') or double quotes ("def"). One difference is that double-quoted Strings handle more escape characters, and inline evaluation of bracketed expressions. Another difference is that C and Java programmers will think it's strange to enclose String literals in single quotes, because single quotes are for character literals or SQL queries.
+=======
+An object is a representation in memory of a specific concept or thing that the Ruby interpreter knows about. 
+
+2. What is a variable?
+A variable is a name for a location in memory. It can contain, or point to, any type of object.
+
+3. What is the difference between an object and a class?
+An object is an instance of a class, or a specific thing of that class's type in memory. The class is the specifics that are common to all things of that type. The classification of a concept or a thing is a class. A specific thing or concept of a class's type in memory is an object. For example: All books have titles (Class). This book's title is "Harry Potter and the Goblet of Fire" (Object). 
+
+4. What is a String?
+A string is how Ruby understands text. It is a collection of characters (Bytes), and can be created by making an instance of the String class (String.new) or as a string literal ("",'', %Q[]).
+
+5. What are three messages that I can send to a string object? Hint: think methods
+chomp! - removes newline characters, or the specified characters, from the end of a string
+strip! - removes leading or trailing whitespace from a string
+split  - returns an array of strings made up of the original string separated on whitespace or the specified characters or regexp
+
+6. What are two ways of defining a String literal? Bonus: What is the difference between the two?
+Single quotes ex: '' and Double quotes ex: "". The single qoutes allow for 2 escape characters: \' and \\ . The double qouted string literal allows for many different escaped special characters (like \n is a line break) and allows for string interpolation, or the injection of evaluated Ruby code into the string ex: "Hello #{my_name}". The single qouted string takes up much less memory than a doulbe qouted string with interpolation. Without interpolation, both are about the same.
+
+>>>>>>> ea9aa93fcf3644ee7d901c086bc1b1ebc77f6f44
