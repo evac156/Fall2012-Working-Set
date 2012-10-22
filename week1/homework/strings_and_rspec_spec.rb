@@ -13,7 +13,6 @@ describe String do
 			@my_string = "Renée is a fun teacher. Ruby is a really cool programming language"
             puts "Starting string: \"#@my_string\""
 		end
-<<<<<<< HEAD
 
         after(:all) do
             puts "\nFooling around some more with strings. Splitting on 'a'"
@@ -43,14 +42,6 @@ describe String do
 		it "should be able to split on the . character" do
 			result = @my_string.split(/\.\s*/)
 			result.should have(2).items
-=======
-		it "should be able to count the charaters" do
-			@my_string.should have(@my_string.size).characters
-		end
-		it "should be able to split on the . charater" do
-			result = @my_string.split('.')
-			result.should have(2).items	
->>>>>>> ea9aa93fcf3644ee7d901c086bc1b1ebc77f6f44
 		end
 
 		it "should be able to give the encoding of the string" do
