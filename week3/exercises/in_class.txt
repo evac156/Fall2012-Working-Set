@@ -1,0 +1,82 @@
+Q1. x.select {|m| m[:nocturnal]}.count
+Q2. x.select {|m| m[:nocturnal]}.collect{|n| n[:name]}
+
+Q3.
+1.9.3p286 :020 > t = 0
+ => 0 
+1.9.3p286 :021 > x.each do |m|
+1.9.3p286 :022 >     t+= m[:legs]
+1.9.3p286 :023?>   end
+ => [{:name=>"Zombie", :nocturnal=>false, :dangers=>["bites", "scratches"], :vulnerabilities=>["fire", "decapitation"], :legs=>2}, {:name=>"Mummy", :nocturnal=>false, :dangers=>["bites", "scratches", "curses"], :vulnerabilities=>["fire", "decapitation", "cats"], :legs=>2}, {:name=>"Vampire", :nocturnal=>true, :dangers=>["bites", "hypnosis"], :vulnerabilities=>["wood", "decapitation", "crosses", "holy_water", "garlic", "daylight"], :legs=>2}, {:name=>"Werewolf", :nocturnal=>true, :dangers=>["bites", "scratches"], :vulnerabilities=>["silver"], :legs=>4}, {:name=>"Blob", :nocturnal=>false, :dangers=>["suffocation"], :vulnerabilities=>["CO2", "ice", "cold"], :legs=>0}] 
+1.9.3p286 :024 > t
+ => 10 
+
+Better with inject.
+
+x.map{|m| m[:legs]}.inject(:+)
+
+Q4.
+
+For starters:
+1.9.3p286 :026 > x.each do |m|
+1.9.3p286 :027 >     temp_v = m[:vulnerabilities]
+1.9.3p286 :028?>   temp_v.each do |v|
+1.9.3p286 :029 >       puts v
+1.9.3p286 :030?>     end
+1.9.3p286 :031?>   end
+fire
+decapitation
+fire
+decapitation
+cats
+wood
+decapitation
+crosses
+holy_water
+garlic
+daylight
+silver
+CO2
+ice
+cold
+
+1.9.3p286 :035 > total_dangers = x.map{|m| m[:dangers]}.flatten
+ => ["bites", "scratches", "bites", "scratches", "curses", "bites", "hypnosis", "bites", "scratches", "suffocation"]
+
+Then use the frequency counting method shown in the book for strings.
+
+1.9.3p286 :036 > total_dangers.each do |d|
+1.9.3p286 :037 >     if dangers[d].respond_to? '+'
+1.9.3p286 :038?>     dangers[d] += 1
+1.9.3p286 :039?>     else
+1.9.3p286 :040 >       dangers[d] = 1
+1.9.3p286 :041?>     end
+1.9.3p286 :042?>   end
+NameError: undefined local variable or method `dangers' for main:Object
+	from (irb):37:in `block in irb_binding'
+	from (irb):36:in `each'
+	from (irb):36
+	from /home/pgranger/.rvm/rubies/ruby-1.9.3-p286/bin/irb:16:in `<main>'
+
+And the reason I'm getting that? Because I didn't pre-define dangers as an empty hash.
+
+Anyway, that would get us a hash of key-value (danger-frequency) pairs, which we could then sort on frequency, and select the first (or last) couple of values.
+
+====
+
+1.9.3p286 :001 > load "myvamp.rb"
+ => true 
+1.9.3p286 :002 > x = MyVampire.new "Ted"
+ => #<MyVampire:0x00000001fc7dc0 @name="Ted", @nocturnal=true, @vlunerabilities=[:garlic, :sunlight], @dangers=[:bites], @legs=2> 
+
+1.9.3p286 :005 > x.is_a? Vampire
+ => true 
+1.9.3p286 :006 > x.is_a? Monster
+ => true 
+1.9.3p286 :007 > x.is_a? NamedThing
+ => true 
+1.9.3p286 :008 > x.is_a? String
+ => false 
+1.9.3p286 :009 > x.is_a? MyVampire
+ => true 
+
