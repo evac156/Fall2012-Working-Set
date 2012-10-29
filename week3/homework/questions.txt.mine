@@ -24,7 +24,7 @@ A2. A symbol is a unique object by a given name. Two strings with the same conte
 
 Q3. What is a block and how do I call a block?
 
-A3. References to blocks: Section 2.7 (Blocks and Iterators, p.25), section 4.3 (Blocks and Iterators, p.52), section 22.13 (Blocks, Closures, and Proc Objects, p.332).
+A3. References for blocks: Section 2.7 (Blocks and Iterators, p.25), section 4.3 (Blocks and Iterators, p.52), section 22.13 (Blocks, Closures, and Proc Objects, p.332).
 
 A block is a section of code within delimiters (braces or a do-end pair) which can be passed to a method call, and can be executed within the receiving method. This is frequently used to implement iteration over a code block, where the method receiving the block is an iterative method (each, times, upto, map, inject, etc.). Methods other than iterators can receive a block of code, and execute it via the yield statement.
 
@@ -40,5 +40,9 @@ A4. A block is passed to a method by converting it to a Proc object. Proc object
 
 Q5. Where would you use regular expressions?
 
-A5.
+A5. References for regular expressions: Section 2.6 (Regular Expressions, p.24), Chapter 7 (Regular Expressions, p.93), and section 22.3 (The Basic Types, p. 301).
+
+A regular expression is useful any time we need to look for patterns within a String, and possibly make changes to the String based on that pattern. Regular expressions include facilities to look for character literals, substring literals, classes of characters (whitespace, digits, letters, etc.), as well as repetitions, alternations ("match any one of several"), or exclusions of these. Substitution for matched character sequences in the original string is performed via the sub or gsub methods.
+
+Matched character sequences can be referenced for substitution or duplication by their index, by a name assigned within the regular expression (the ?<name> and k<name> pattern), or as parameters to a block.
 
