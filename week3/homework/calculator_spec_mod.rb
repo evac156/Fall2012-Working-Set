@@ -69,7 +69,43 @@ describe Calculator do
     end
   end
   
-  it "raises one number to the power of another number"
+  describe "#exp" do
+    it "raises one integer to the power of another integer" do
+      @calculator.exp(2, 8).should == 256
+      @calculator.exp(5, 6).should == 15625
+      @calculator.exp(-3, 7).should == (-2187)
+      @calculator.exp(-11, 4).should == @calculator.exp(121, 2)
+      @calculator.exp(-35, 1).should == (-35)
+      @calculator.exp(77, 0).should == 1
+      @calculator.exp(1, 99).should == 1
+    end
+
+    it "raises an integer to a negative integer power" do
+      @calculator.exp(2, -3).should == 0.125
+      @calculator.exp(10, -4).should == 0.0001
+      @calculator.exp(-5, -3).should == (-0.008)
+      @calculator.exp(8, -1).should == 0.125
+      @calculator.exp(1, -33).should == 1
+    end
+
+    it "raises a float to the power of an integer" do
+      @calculator.exp(2.2, 3).should be_within(1.0e-8).of(10.648)
+      @calculator.exp(5.5, 4).should == 915.0625
+      @calculator.exp(-0.25, -2).should == 16
+      @calculator.exp(-6.3, -5).should be_within(1.0e-9).of(-0.000100762)
+      @calculator.exp(3.77, 0).should == 1
+      @calculator.exp(8.225, 1).should == 8.225
+    end
+
+    it "returns nil if we don't have a number raised to an integer" do
+      @calculator.exp(5, 3.5).should == nil
+      @calculator.exp(9.9, nil).should == nil
+      @calculator.exp(nil, 5).should == nil
+      @calculator.exp("fish", "wanda").should == nil
+      @calculator.exp([:a, :b, :c], 3).should == nil
+    end
+
+  end
   
   # http://en.wikipedia.org/wiki/Factorial
   describe "#factorial" do

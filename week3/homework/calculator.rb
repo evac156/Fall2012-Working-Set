@@ -22,15 +22,20 @@ class Calculator
     # element (zero might be better). Any non-numeric values are skipped.
     def product(p1, p2 = nil)
         outProd = 0
-        foundValue = false
+        haveNumbers = false
+        # If we have two parameters, both numeric
         if ((p1.is_a? Numeric) && p2 && (p2.is_a? Numeric))
             outProd = p1 * p2
+        # If we have one parameter which is an array
         elsif ((p1.is_a? Array) && !p2)
             p1.each do |p|
+                # Only care about numeric values
                 if (p.is_a? Numeric)
-                    if (!foundValue)
-                        foundValue = true
+                    # First number found becomes the product value so far
+                    if (!haveNumbers)
+                        haveNumbers = true
                         outProd = p
+                    # All subsequent numbers multiply the existing product
                     else
                         outProd *= p
                     end
@@ -38,5 +43,25 @@ class Calculator
             end
         end
         outProd
+    end
+
+    # Raise a number to an integer power. We don't mess around with non-integral
+    # powers. And we certainly don't try to do anything with non-numerics.
+    def exp(base, exp)
+        product = nil
+        negativePower = false
+        counter = 0
+        if (base && exp && (base.is_a? Numeric) && (exp.is_a? Integer))
+            negativePower = (exp < 0)
+            counter = exp.abs
+            product = 1
+            counter.times do
+              product *= base
+            end
+            if (negativePower)
+              product = 1.0 / product
+            end
+        end
+        product
     end
 end
