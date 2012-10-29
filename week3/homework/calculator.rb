@@ -49,19 +49,39 @@ class Calculator
     # powers. And we certainly don't try to do anything with non-numerics.
     def exp(base, exp)
         product = nil
-        negativePower = false
+        negativeExponent = false
         counter = 0
+        # Make sure base is numeric, exponent is integer
         if (base && exp && (base.is_a? Numeric) && (exp.is_a? Integer))
-            negativePower = (exp < 0)
+            negativeExponent = (exp < 0)
             counter = exp.abs
+            # Start with value of 1, so we're correct if exponent is zero
             product = 1
+            # Repeat multiplying
             counter.times do
               product *= base
             end
-            if (negativePower)
+            # If the exponent was negative, take the inverse of the product
+            if (negativeExponent)
               product = 1.0 / product
             end
         end
         product
+    end
+
+    # Take the factorial value of a non-negative integer. If not an integer, or
+    # if a negative integer, returns nil.
+    def factorial(n)
+        fact = nil
+        # Check for valid input
+        if (n && (n.is_a? Integer) && (n >= 0))
+            # Set base for multiplying
+            fact = 1
+            # Multiply by values 1 through n
+            n.times do |index|
+                fact *= (index + 1) # Index will be 0 through n-1, so increment
+            end
+        end
+        fact
     end
 end
