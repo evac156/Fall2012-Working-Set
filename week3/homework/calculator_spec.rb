@@ -128,6 +128,24 @@ describe Calculator do
     it "computes the factorial of 10" do
       @calculator.factorial(10).should == 3628800
     end
+
+    it "does nothing for non-numeric values" do
+      @calculator.factorial(nil).should == nil
+      @calculator.factorial("word").should == nil
+      @calculator.factorial([1, 2, 3]).should == nil
+    end
+
+    it "does nothing for non-integer values" do
+      @calculator.factorial(0.5).should == nil
+      @calculator.factorial(-3.7).should == nil
+      @calculator.factorial(9.999).should == nil
+    end
+
+    it "does nothing for negative integer values" do
+      @calculator.factorial(-1).should == nil
+      @calculator.factorial(-12).should == nil
+      @calculator.factorial(-9999).should == nil
+    end
   end
 
 end
