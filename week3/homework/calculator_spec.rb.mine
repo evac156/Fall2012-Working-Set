@@ -8,7 +8,7 @@ describe Calculator do
 
   describe "#sum" do
     it "computes the sum of an empty array" do
-      @calculator.sum([]).should == 0
+      @calculator.sum([]).should be_zero
     end
     
     it "computes the sum of an array of one number" do
@@ -23,16 +23,20 @@ describe Calculator do
       @calculator.sum([1,3,5,7,9]).should == 25
     end
 
-    it "skips over non-numerics in an array" do
-      @calculator.sum([1,3,"pancake",7,"cornflake",11]).should == 22
+    it "returns nil when the array is not entirely numeric" do
+      @calculator.sum([1,3,"pancake",7,"cornflake",11]).should be_nil
     end
 
-    it "skips everything when none of them are numeric" do
-      @calculator.sum(["one", "two", "three", "four"]).should == 0
+    it "returns nil when the array is not at all numeric" do
+      @calculator.sum(["one", :two, "three", :four, "five"]).should be_nil
     end
 
-    it "does nothing if it's passed a nil" do
-      @calculator.sum(nil).should == 0
+    it "returns nil if it's passed a non_array" do
+      @calculator.sum("zombie").should be_nil
+    end
+
+    it "returns nil if it's passed a nil" do
+      @calculator.sum(nil).should be_nil
     end
   end
   
@@ -46,12 +50,33 @@ describe Calculator do
       @calculator.product(9.3, 7.22).should == 67.146
     end
 
-    it "returns 0 when its argument is nil" do
-      @calculator.product(nil).should == 0
+    it "returns nil when both its arguments are nil" do
+      @calculator.product(nil, nil).should be_nil
     end
 
-    it "returns 0 when the array of numbers is empty" do
-      @calculator.product([]).should == 0
+    it "returns nil when either of its arguments are non-numeric" do
+      @calculator.product(1, "99").should be_nil
+      @calculator.product(:one, 5.99).should be_nil
+      @calculator.product("two", :seventy_seven).should be_nil
+      @calculator.product(1, nil).should be_nil
+    end
+
+    it "returns nil when its single argument is nil" do
+      @calculator.product(nil).should be_nil
+    end
+
+    it "returns nil when its argument is not an array" do
+      @calculator.product(:not_an_array).should be_nil
+      @calculator.product("also not an array").should be_nil
+    end
+
+    it "returns nil when its argument is a non-numeric array" do
+      @calculator.product(["alpha", "bravo", "charlie"]).should be_nil
+      @calculator.product([1, "two", 3, 4]).should be_nil
+    end
+
+    it "returns 1 when the array of numbers is empty" do
+      @calculator.product([]).should == 1
     end
 
     it "returns the single value when the array contains only one number" do
@@ -67,6 +92,28 @@ describe Calculator do
       @calculator.product([6, 2.5, -3, 6.1]).should == (-274.5)
       @calculator.product([-11, 16, -0.25, 3, 1.5]).should == 198
     end
+
+    it "maintains distributive consistency" do
+      a = [1, 2, 3]
+      b = [-7, -8, -9]
+      c = [3.14, 100.0, -5.55]
+      @calculator.product(a).should == 6
+      @calculator.product(b).should == (-504)
+      @calculator.product(c).should == (-1742.7)
+      # 6 * (-504) = (-3024)
+      @calculator.product(a + b).should == (@calculator.product(a) * @calculator.product(b))
+      # (-504) * (-1742.7) = 878320.8
+      @calculator.product(b + c).should be_within(1.0e-8).of(@calculator.product(b) * @calculator.product(c))
+      # (-1742.7) * 6 = −10456.2 
+      @calculator.product(c + a).should == (@calculator.product(c) * @calculator.product(a))
+      # 6 * (-504) * (-1742.7) = 5269924.8
+      @calculator.product(a + b + c).should == (@calculator.product(a) * @calculator.product(b) * @calculator.product(c))
+
+      # And because the identity is defined as 1, concatenating the empty array is the same as multiplying by 1
+      d = []
+      @calculator.product(a + d).should == (@calculator.product(a) * @calculator.product(d))
+      @calculator.product(d + a + b + c).should == (@calculator.product(d) * @calculator.product(a) * @calculator.product(b) * @calculator.product(c))
+    end
   end
   
   describe "#exp" do
@@ -74,7 +121,7 @@ describe Calculator do
       @calculator.exp(2, 8).should == 256
       @calculator.exp(5, 6).should == 15625
       @calculator.exp(-3, 7).should == (-2187)
-      @calculator.exp(-11, 4).should == @calculator.exp(121, 2)
+      @calculator.exp(-11, 4).should == 14641
       @calculator.exp(-35, 1).should == (-35)
       @calculator.exp(77, 0).should == 1
       @calculator.exp(1, 99).should == 1
@@ -98,11 +145,11 @@ describe Calculator do
     end
 
     it "returns nil if we don't have a number raised to an integer" do
-      @calculator.exp(5, 3.5).should == nil
-      @calculator.exp(9.9, nil).should == nil
-      @calculator.exp(nil, 5).should == nil
-      @calculator.exp("fish", "wanda").should == nil
-      @calculator.exp([:a, :b, :c], 3).should == nil
+      @calculator.exp(5, 3.5).should be_nil
+      @calculator.exp(9.9, nil).should be_nil
+      @calculator.exp(nil, 5).should be_nil
+      @calculator.exp("fish", "wanda").should be_nil
+      @calculator.exp([:a, :b, :c], 3).should be_nil
     end
 
   end
@@ -130,21 +177,21 @@ describe Calculator do
     end
 
     it "does nothing for non-numeric values" do
-      @calculator.factorial(nil).should == nil
-      @calculator.factorial("word").should == nil
-      @calculator.factorial([1, 2, 3]).should == nil
+      @calculator.factorial(nil).should be_nil
+      @calculator.factorial("word").should be_nil
+      @calculator.factorial([1, 2, 3]).should be_nil
     end
 
     it "does nothing for non-integer values" do
-      @calculator.factorial(0.5).should == nil
-      @calculator.factorial(-3.7).should == nil
-      @calculator.factorial(9.999).should == nil
+      @calculator.factorial(0.5).should be_nil
+      @calculator.factorial(-3.7).should be_nil
+      @calculator.factorial(9.999).should be_nil
     end
 
     it "does nothing for negative integer values" do
-      @calculator.factorial(-1).should == nil
-      @calculator.factorial(-12).should == nil
-      @calculator.factorial(-9999).should == nil
+      @calculator.factorial(-1).should be_nil
+      @calculator.factorial(-12).should be_nil
+      @calculator.factorial(-9999).should be_nil
     end
   end
 
