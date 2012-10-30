@@ -63,52 +63,10 @@ public
 
   # Raise a number to an integer power. We don't mess around with non-integral
   # powers. And we certainly don't try to do anything with non-numerics.
+  # This variant actually uses the existing product method, building up an array
+  # and passing it to product(). It's not as efficient as the original, but it's
+  # kind of cool.
   def exp(base, exp)
-    result = nil
-    negativeExponent = false
-    counter = 0
-    # Make sure base is numeric, exponent is integer
-    if ((base.is_a? Numeric) && (exp.is_a? Integer))
-      negativeExponent = (exp < 0)
-      counter = exp.abs
-      # Start with value of 1, so we're correct if exponent is zero
-      result = @@MULT_IDENT
-      # Repeat multiplying
-      counter.times { result *= base }
-      # If the exponent was negative, take the inverse of the product
-      if (negativeExponent)
-        result = 1.0 / result
-      end
-    end
-    result
-  end
-
-  # Take the factorial value of a non-negative integer. If not an integer, or
-  # if a negative integer, returns nil.
-  def factorial(n)
-    result = nil
-    # Check for valid input
-    if ((n.is_a? Integer) && (n >= 0))
-      # Set base for multiplying
-      result = @@MULT_IDENT
-      # Multiply by values 1 through n
-      n.times do |index|
-        result *= (index + 1) # Index will be 0 through n-1, so increment
-      end
-    end
-    result
-  end
-
-  # The two methods below are variants of exp() and factorial() above. They make
-  # use of the product() method. Instead of performing the multiplication within
-  # these methods, they build up an array of factors, and pass the array to
-  # product() for evaluation. It's not as efficient as the original, but it is
-  # kind of a cool proof of concept, and it leverages existing code. The methods
-  # below pass all the same unit tests as the original.
-
-  # Raise a number to an integer power. We don't mess around with non-integral
-  # powers. And we certainly don't try to do anything with non-numerics.
-  def exp_variant(base, exp)
     result = nil
     negativeExponent = false
     counter = 0
@@ -130,7 +88,10 @@ public
 
   # Take the factorial value of a non-negative integer. If not an integer, or
   # if a negative integer, returns nil.
-  def factorial_variant(n)
+  # This variant actually uses the existing product method, building up an array
+  # and passing it to product(). It's not as efficient as the original, but it's
+  # kind of cool.
+  def factorial(n)
     result = nil
     # Check for valid input
     if ((n.is_a? Integer) && (n >= 0))
@@ -141,5 +102,4 @@ public
     end
     result
   end
-
 end
