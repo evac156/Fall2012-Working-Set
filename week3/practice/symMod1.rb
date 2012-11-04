@@ -1,6 +1,6 @@
 module SymMod1
-    :shared_symbol
     :unique1
+    :shared_symbol
 
     def getHash1
         { :shared_symbol => "shared_symbol from symMod1",
