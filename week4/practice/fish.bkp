@@ -1,0 +1,173 @@
+0: 0: This is the first line.
+1: 1: This is the second line.
+2: 2: This is the third line.
+3: 3: And we'll call this line 4.
+4: 4: And this is the fifth line, also the last.
+5: 0: class IOPractice
+6: 1:   @@FILENAME_PATTERN = /^[A-Za-z0-9_]{1,25}(\.[a-z]{1,3})?$/
+7: 2: 
+8: 3:   # Check to see if a given String is a valid file name, using a regular
+9: 4:   # expression.
+10: 5:   def isValidFileName?(fname)
+11: 6:     status = (fname.is_a? String) && (!(fname =~ @@FILENAME_PATTERN).nil?)
+12: 7:   end
+13: 8:   
+14: 9:   # Check to see if the parameter given is the name of a valid, existing file.
+15: 10:   def isValidFile?(fname)
+16: 11:     status = false;
+17: 12: 
+18: 13:     if (isValidFileName?(fname))
+19: 14:       puts("Received valid file name \"#{fname}\"");
+20: 15:       if (File.exist? fname)
+21: 16:         puts("File \"#{fname}\" exists. Proceeding.");
+22: 17:         status = true
+23: 18:       else
+24: 19:         puts("File \"#{fname}\" does not exist. Doing nothing.");
+25: 20:       end
+26: 21:     else
+27: 22:       puts("Parameter #{fname.to_s} is not a valid file name. Doing nothing.")
+28: 23:     end
+29: 24:     status
+30: 25:   end
+31: 26: 
+32: 27:   # Takes the name of a file, makes sure it's valid, opens it for reading, and
+33: 28:   # echoes each line of the file, with the line number prefixed.
+34: 29:   def echoFile1(fname)
+35: 30:     if (isValidFile?(fname))
+36: 31:       thisFile = File.open(fname, "r")
+37: 32:       puts
+38: 33:       lineNum = 0
+39: 34:       while line = thisFile.gets
+40: 35:         puts("#{lineNum}: #{line}")
+41: 36:         lineNum += 1
+42: 37:       end #while
+43: 38:       thisFile.close
+44: 39:     end # if
+45: 40:   end # method
+46: 41: 
+47: 42:   # Using the File.open block syntax, as per p.148 of the book. In this case,
+48: 43:   # we don't have to explicitly close, or have any exception handling.
+49: 44:   def echoFile2(fname)
+50: 45:     if (isValidFile?(fname))
+51: 46:       File.open(fname, "r") do |thisFile|
+52: 47:         puts
+53: 48:         lineNum = 0
+54: 49:         while line = thisFile.gets
+55: 50:           puts("#{lineNum}: #{line}")
+56: 51:           lineNum += 1
+57: 52:         end # while
+58: 53:       end # do-block
+59: 54:     end # if
+60: 55:   end # method
+61: 56: 
+62: 57:   # Variant of echoFile2, above, still using block syntax, but creating the
+63: 58:   # Proc object first. This doesn't work. Why? It says that there is no local
+64: 59:   # variable or method 'file'. Now, it seems to me that the block syntax for
+65: 60:   # File.open *should* create the local parameter here, just as it did in the
+66: 61:   # first two versions, and then pass that parameter to the block. But it
+67: 62:   # doesn't work that way.
+68: 63:   def echoFile3(fname)
+69: 64:     if (isValidFile?(fname))
+70: 65:       dumpProc = Proc.new do |thisFile|
+71: 66:         puts
+72: 67:         lineNum = 0
+73: 68:         while line = thisFile.gets
+74: 69:           puts("#{lineNum}: #{line}")
+75: 70:           lineNum += 1
+76: 71:         end # while
+77: 72:       end # do-block of Proc object
+78: 73:       File.open(fname, "r") |file| dumpProc
+79: 74:     end # if
+80: 75:   end # method
+81: 76: 
+82: 77:   # Create a proc object that echoes an open file line by line
+83: 78:   def makeDumpProc
+84: 79:     dumper = Proc.new do |thisFile|
+85: 80:       puts
+86: 81:       lineNum = 0
+87: 82:       while line = thisFile.gets
+88: 83:         puts("#{lineNum}: #{line}")
+89: 84:         lineNum += 1
+90: 85:       end # while
+91: 86:     end # do-block
+92: 87:     dumper
+93: 88:   end
+94: 89: 
+95: 90:   # This is like version 3, above, but it creates the Proc object in a separate
+96: 91:   # method. It fails for the same reason, saying there's no local variable
+97: 92:   # 'thisFile'. Again, Ruby weirdness. Should create the local variable and
+98: 93:   # pass it to the invocation of the Proc object
+99: 94:   def echoFile4(fname)
+100: 95:     if (isValidFile?(fname))
+101: 96:       dumpProc = makeDumpProc
+102: 97:       puts("dumpProc = #{dumpProc.inspect}")
+103: 98:       File.open(fname, "r") |thisFile| dumpProc
+104: 99:     end # if
+105: 100:   end
+106: 101: 
+107: 102:   # This one makes it work again, if we explicitly create the local variable
+108: 103:   # first and then pass it as a parameter to the Proc.call. That should be done
+109: 104:   # just as well byt the other form, but Ruby is just weird. This doesn't get us
+110: 105:   # the advantages of the block form, though.
+111: 106:   def echoFile5(fname)
+112: 107:     if (isValidFile?(fname))
+113: 108:       dumpProc = makeDumpProc
+114: 109:       puts("dumpProc = #{dumpProc.inspect}")
+115: 110:       thisFile = File.open(fname, "r")
+116: 111:       dumpProc.call thisFile
+117: 112:     end # if
+118: 113:   end
+119: 114: 
+120: 115:   # So if we want both, the block form of File.open, and a pre-created Proc
+121: 116:   # object, we do this. Use the block syntax of File.open, which creates the
+122: 117:   # local variable, then invoke our proc on that.
+123: 118:   def echoFile6(fname)
+124: 119:     if (isValidFile?(fname))
+125: 120:       dumpProc = makeDumpProc
+126: 121:       puts("dumpProc = #{dumpProc.inspect}")
+127: 122:       thisFile = File.open(fname, "r") do |thisFile|
+128: 123:         dumpProc.call thisFile
+129: 124:       end # do-block
+130: 125:     end # if
+131: 126:   end
+132: 127: 
+133: 128:   # Now that we've figured out reading from a file and echoing to the console,
+134: 129:   # try echoing to another file. This is going to check to see if the inbound
+135: 130:   # file is valid (and exists), and echo it to the target. If the target already
+136: 131:   # exists, we'll append to it. If it doesn't, we'll create a new one and write
+137: 132:   # to it.
+138: 133:   def echoFile7(inFname, outFname)
+139: 134:     validParms = true
+140: 135:     if (!isValidFile?(inFname))
+141: 136:       puts("#{inFname.to_s} is not a valid input file.")
+142: 137:       validParms = false
+143: 138:     end
+144: 139:     if (!isValidFileName?(outFname))
+145: 140:       puts("#{outFname.to_s} is not a valid output file name.")
+146: 141:       validParms = false
+147: 142:     end
+148: 143:     if (validParms)
+149: 144:       if (inFname == outFname)
+150: 145:         puts("Input #{inFname} and output #{outFname} are the same file.")
+151: 146:         validParms = false
+152: 147:       end
+153: 148:     end
+154: 149:     if (validParms)
+155: 150:       begin
+156: 151:         outFile = File.open(outFname, "a")
+157: 152:         File.open(inFname, "r") do |inFile|
+158: 153:           lineNum = 0
+159: 154:           while line = inFile.gets
+160: 155:             outFile.puts("#{lineNum}: #{line}")
+161: 156:             lineNum += 1
+162: 157:           end # while
+163: 158:         end # do-block
+164: 159:       ensure
+165: 160:         if (outFile.is_a? File)
+166: 161:           outFile.close
+167: 162:         end # if
+168: 163:       end # ensure
+169: 164:     end # if
+170: 165:   end # method
+171: 166: 
+172: 167: end
