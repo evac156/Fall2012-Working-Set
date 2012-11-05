@@ -208,4 +208,19 @@ class IOPractice
     end # if
     nil
   end # method
+
+  # According to the online RDoc, each, each_line, and lines are all synonyms.
+  # According to the printed RDoc in the book, lines does something different.
+  # So let's try this to see if there really is any difference. There isn't.
+  def echoFile10(fname, lineSep=$/)
+    if (isValidFile?(fname))
+      File.open(fname, "r") do |thisFile|
+        puts
+        thisFile.lines(lineSep).with_index do |thisLine, lineNum|
+          puts ("#{lineNum}: #{thisLine}")
+        end # thisLine do-block
+      end # thisFile do-block
+    end # if
+    nil
+  end # method
 end
