@@ -16,9 +16,7 @@ The each or each_line methods are iterative methods which also take an optional 
 
 Q2. How would you output "Hello World!" to a file called my_output.txt?
 
-A2. Here's a simple HelloWorld class that just has this one method. It doesn't
-take any parameters, and doesn't do any checking to see if the output file is
-valid, has write permissions, etc.
+A2. Here's a simple HelloWorld class that just has this one method. It doesn't take any parameters, and doesn't do any checking to see if the output file is valid, has write permissions, etc.
 
 class HelloWorld
 
@@ -79,5 +77,5 @@ A5. Found some information online at:
 
 Rake is a makefile utility for Ruby. It specifies a set of tasks and prerequisites for those tasks, so in that way it is similar to Make or Ant. It uses Ruby syntax for defining tasks. The online sources I found were very vague about its usage. Strangely, the tutorial talked mostly about building applications in C. Since it's called a "make utility," normally that would imply compiling of source files and deployment of executables and resources. Since Ruby isn't compiled, then it's probably for deployment of source files. It can probably also be used to run suites of unit tests.
 
-From Jim Weirich's glossar at GitHub: "task (Task): Basic unit of work in a rakefile. A task has a name, a set of prerequisites and a list of actions to be performed." The prerequisites will usually be other tasks. This allows small, simple tasks to be defined explicitly, and larger tasks become composites of the smaller ones.
+From Jim Weirich's glossary at GitHub: "task (Task): Basic unit of work in a rakefile. A task has a name, a set of prerequisites and a list of actions to be performed." The prerequisites will usually be other tasks. This allows small, simple tasks to be defined explicitly, and larger tasks become composites of the smaller ones.
 
