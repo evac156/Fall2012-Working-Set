@@ -1,0 +1,102 @@
+class Steak
+
+@@D0 = "Moo!"
+@@D1 = "Very Rare"
+@@D2 = "Rare"
+@@D3 = "Medium Rare"
+@@D4 = "Medium"
+@@D5 = "Medium Well"
+@@D6 = "Well Done"
+@@D7 = "Burnt!"
+
+@@DEGREES = [@@D0, @@D1, @@D2, @@D3, @@D4, @@D5, @@D6, @@D7]
+
+@@STEAK_CACHE = Hash.new
+
+attr_reader :name, :index
+
+def initialize(p = 4)
+#  puts("initialize(#{p})")
+#  puts("(p.is_a? String) = #{(p.is_a? String)}")
+#  puts("(p.is_a? Integer) = #{(p.is_a? Integer)}")
+  if ((p.is_a? String) && (@@DEGREES.index(p)))
+#    puts("In string")
+#    puts("(@@DEGREES.index(p)) = #{(@@DEGREES.index(p))}")
+    @index = @@DEGREES.index(p)
+    @name = p
+  elsif ((p.is_a? Integer) && (p >= 0) && (p < @@DEGREES.size))
+ #   puts("In integer")
+ #   puts("(@@DEGREES[p]) = #{@@DEGREES[p]}")
+    @index = p
+    @name = @@DEGREES[p]
+  end
+
+  if (@@STEAK_CACHE[@index])
+    puts("Name: #@name; Index: #@index is already in the cache. Returning.")
+    rs = @@STEAK_CACHE[@index]
+  else
+    @index.freeze
+    @name.freeze
+    puts("Name: #@name; Index: #@index is not in the cache yet. Adding.")
+    @@STEAK_CACHE[@index] = self
+    rs = self
+  end
+end
+
+def succ
+  ret = nil
+  if (@index && (@index < (@@DEGREES.length - 1)))
+    if (@@STEAK_CACHE[@index + 1])
+      ret = @@STEAK_CACHE[@index + 1]
+    else
+      ret = Steak.new(@index + 1)
+    end
+  end
+  ret
+end
+
+def prev
+  ret = nil
+  if (@index && (@index > 0))
+    if (@@STEAK_CACHE[@index - 1])
+      ret = @@STEAK_CACHE[@index - 1]
+    else
+      ret = Steak.new(@index - 1)
+    end
+  end
+  ret
+end
+
+def <=>(otherSteak)
+    @index <=> otherSteak.index
+end
+
+def showDegrees(d = nil)
+  if (d)
+    puts("@@DEGREES[#{d}] = #{@@DEGREES[d]}, object_id = #{@@DEGREES[d].object_id}")
+  else
+    puts("@@DEGREES.object_id = #{@@DEGREES.object_id}")
+    @@DEGREES.each.with_index do |deg, index|
+      puts("@@DEGREES[#{index}] = #{deg}, object_id = #{deg.object_id}")
+    end
+  end
+end
+
+def showCache(s = nil)
+  if (s.is_a? Steak)
+    puts("@@STEAK_CACHE[#{s.name}] = #{@@STEAK_CACHE[s.name]}, object_id = #{@@STEAK_CACHE[s.name].object_id}")
+  elsif (s.nil?)
+    puts("@@STEAK_CACHE.object_id = #{@@STEAK_CACHE.object_id}")
+    @@STEAK_CACHE.each do |k, v|
+      puts("@@STEAK_CACHE[#{k}] = #{v}, object_id = #{v.object_id}")
+    end
+  else
+    puts("Not a valid parameter. Pass me a steak, or nil.")
+  end
+end
+
+def to_s
+  "Name: #@name; Index: #@index"
+end
+
+end
