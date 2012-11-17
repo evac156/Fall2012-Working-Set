@@ -1,0 +1,73 @@
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_gem$ up
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class$ mkdir test_jeweler
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class$ cd test_jeweler/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler$ jeweler peg_gem_second --rspec
+No github.user found in ~/.gitconfig. Please tell git about your GitHub account (see http://github.com/blog/180-local-github-config for details). For example: git config --global github.user defunkt
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler$ git config --global github.user evac156
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler$ jeweler peg_gem_second --rspec	create	.gitignore
+	create	Rakefile
+	create	Gemfile
+	create	LICENSE.txt
+	create	README.rdoc
+	create	.document
+	create	lib
+	create	lib/peg_gem_second.rb
+	create	spec
+	create	spec/spec_helper.rb
+	create	spec/peg_gem_second_spec.rb
+	create	.rspec
+Jeweler has prepared your gem in ./peg_gem_second
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler$ bundle install
+Could not locate Gemfile
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler$ cd peg_gem_second/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler/peg_gem_second$ bundle install
+Fetching gem metadata from http://rubygems.org/........
+Fetching gem metadata from http://rubygems.org/..
+Bundler could not find compatible versions for gem "bundler":
+  In Gemfile:
+    bundler (~> 1.0.0) ruby
+
+  Current Bundler version:
+    bundler (1.2.1)
+
+This Gemfile requires a different version of Bundler.
+Perhaps you need to update Bundler by running `gem install bundler`?
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler/peg_gem_second$ bundle install
+Fetching gem metadata from http://rubygems.org/........
+Fetching gem metadata from http://rubygems.org/..
+Installing rake (10.0.0) 
+Using bundler (1.2.1) 
+Using diff-lcs (1.1.3) 
+Using git (1.2.5) 
+Using json (1.7.5) 
+Using rdoc (3.12) 
+Using jeweler (1.8.4) 
+Installing rspec-core (2.8.0) 
+Installing rspec-expectations (2.8.0) 
+Installing rspec-mocks (2.8.0) 
+Installing rspec (2.8.0) 
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler/peg_gem_second$ git status -v
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   Gemfile
+#	modified:   Rakefile
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	Gemfile.lock
+#	Gemfile~
+#	Rakefile~
+no changes added to commit (use "git add" and/or "git commit -a")
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler/peg_gem_second$ git remote -v
+origin	git@github.com:evac156/peg_gem_second.git (fetch)
+origin	git@github.com:evac156/peg_gem_second.git (push)
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_jeweler/peg_gem_second$ 
+

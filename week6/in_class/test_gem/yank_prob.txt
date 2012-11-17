@@ -1,0 +1,8 @@
+gem push peg_test_gem-0.0.0.gem 
+Pushing gem to https://rubygems.org...
+Repushing of gem versions is not allowed.
+Please use `gem yank` to remove bad gem releases.
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Fall2012-Working-Set/week6/in_class/test_gem$ gem yank peg_test_gem-0.0.0.gem 
+ERROR:  While executing gem ... (RuntimeError)
+    Unknown command yank
+
