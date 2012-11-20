@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/evac156/peg_gem_second"
   gem.license = "MIT"
   gem.summary = "This is my second gem, the first I've created with Jeweler"
-  gem.description = "Adding junk bbecause it's required"
+  gem.description = "Adding junk because it's required"
   gem.email = "peter@granger.net"
   gem.authors = ["Peter E. Granger"]
   # dependencies defined in Gemfile
