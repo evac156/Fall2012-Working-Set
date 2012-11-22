@@ -1,0 +1,85 @@
+Trying to remember what I did to set up my working midterm directory.
+
+I thought I had saved these commands. But in the adjacent git_hist.txt, NewSequence.txt, and Pull_Sequence.txt, I have only fragments of what I thought I'd done. There's no indication of how I hooked up my working copy to the remote at nird.us.
+
+====
+
+Here's what was in the midterm questions:
+
+Instructions for Mid-Term submission and Git Review (10pts):
+ - Create a git repository for your answers
+ - Add and Commit as you work through the questions and programming problems
+ - Your git log should reflect your work, don't just commit after you have finished working
+ - Use .gitignore to ignore any files that are not relevant to the midterm
+ - E-mail me your ssh public key
+ - I will email you back with your repository name
+ - Add a remote to your git repository: git@nird.us:RubyFall2012/YOURREPOSITORYNAME.git
+ - Push your changes to the remote
+ - After 6pm Tuesday November 13th you will not be able to push to your remote repository (or clone).
+
+====
+
+Renee needed my ssh public key. Found this at ~/.ssh/id_rsa.pub. Contents in full:
+
+----
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdWBuIlvugzZz6SiHYXGngMhvnV0ywl9invPplJk/5tpNuuV/2KQ3dWWbfaQPYIscR3GYr05cFEotN5WZo4Jx5fi/J4Ct1yCJv87K6nPs/fXU040lx9kw4n6l7eM22Crrn5HiPFgCu8KGT+53ztyodHgWJFvVFWWgKfcvawmSrUiBgcBeECJjCFeXZpXcKEMlcXB5TCyX2CMi//ANqDol+lo1RKayYa4DkHDR3/BEGTCskjwMHTDhdcFuegSrC7sg3hF8O9ook7tqNCdsu3m6tcAtIHyuJGR/KM9lGjXSfxY8xTGOMYgUxiFUTCJRFHHm7kX4UP9ZykJfLKT13mt91 peter@granger.net
+----
+
+Sent that to her in the body of an email, and also as an attachment since I wasn't sure if it would go through in the message body.
+
+====
+
+I know I did this (from looking at git_hist.txt)
+
+* Initialized a new local repository:
+
+%> git init Midterm_Working
+
+* Copy over the .rvmrc and .gitignore from other working repositories
+
+%> cd Midterm_Working
+%> cp ../RubyFall2012_Midterm/.gitignore .
+%> cp ../RubyFall2012_Midterm/.rvmrc .
+
+* Copy over some files I'd already created. Any means of getting working files in here will do.
+
+%> cp -r ../RubyFall2012_Midterm/mid_term .
+
+* Check the git status, add my working files, and do a commit:
+
+%> git status
+%> git add .
+%> git status
+%> git commit -m "Created midterm working directory"
+
+* Renee created a remote directory for each person in class. Mine was:
+
+  git@nird.us:RubyFall2012/Peter.git
+
+And that's where it got interesting. Because I didn't save the commands that I used to connect to it. Or I did, and somehow lost them again.
+
+* I think I did this:
+
+%> git remote add renee_remote git@nird.us:RubyFall2012/Peter.git
+
+* I had problems at that point, because Git doesn't know how to keep track of which branch a repository is on; it gets confused and thinks you're on several at once. Try some things like this:
+
+%> git remote -v
+renee_remote	git@nird.us:RubyFall2012/Peter.git (fetch)
+renee_remote	git@nird.us:RubyFall2012/Peter.git (push)
+
+%> git checkout master
+Branch master set up to track remote branch master from renee_remote.
+Already on 'master'
+
+%> git branch -a
+* master
+  remotes/renee_remote/master
+
+* If I can get to the point where I see that remote, then I should be able to do:
+
+%> git push renee_remote master
+
+That'll probably ask me for my credentials each time (evac156, avalanche1) because that's what's needed for the ssh key.
+
+And then, I can do a test pull, as shown in Pull_Sequence.txt
