@@ -1,0 +1,275 @@
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos$ git init TestPull2
+Initialized empty Git repository in /home/pgranger/classes/q1_ruby/git_repos/TestPull2/.git/
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos$ cd TestPull2/
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git remote add renee_remote git@nird.us:RubyFall2012/Peter.git
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git pull -u renee_remote
+remote: Counting objects: 30, done.
+remote: Compressing objects: 100% (27/27), done.
+remote: Total 30 (delta 9), reused 0 (delta 0)
+Unpacking objects: 100% (30/30), done.
+From nird.us:RubyFall2012/Peter
+ * [new branch]      master     -> renee_remote/master
+There are no candidates for merging among the refs that you just fetched.
+Generally this means that you provided a wildcard refspec which had no
+matches on the remote end.
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git remote -v
+renee_remote	git@nird.us:RubyFall2012/Peter.git (fetch)
+renee_remote	git@nird.us:RubyFall2012/Peter.git (push)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+  remotes/renee_remote/master
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ ls
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git checkout master
+Branch master set up to track remote branch master from renee_remote.
+Already on 'master'
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+* master
+  remotes/renee_remote/master
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ ls
+mid_term  practice
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ ls -la
+total 28
+drwxrwxr-x 5 pgranger pgranger 4096 Nov 10 13:29 .
+drwxrwxr-x 8 pgranger pgranger 4096 Nov 10 13:28 ..
+drwxrwxr-x 8 pgranger pgranger 4096 Nov 10 13:29 .git
+-rw-rw-r-- 1 pgranger pgranger  191 Nov 10 13:29 .gitignore
+drwxrwxr-x 2 pgranger pgranger 4096 Nov 10 13:29 mid_term
+drwxrwxr-x 2 pgranger pgranger 4096 Nov 10 13:29 practice
+-rw-rw-r-- 1 pgranger pgranger 1567 Nov 10 13:29 .rvmrc
+
+====
+
+(Go and push a dummy file from my working set)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ cd ../Midterm_Working/
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ ls
+mid_term  practice
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ echo "hello" > ./practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git status -v
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	practice/push_test.txt
+nothing added to commit but untracked files present (use "git add" to track)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git add .
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git commit -m "Testing a push with a dummy file"
+[master 54ecabb] Testing a push with a dummy file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git push renee_remote master
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 364 bytes, done.
+Total 4 (delta 1), reused 0 (delta 0)
+To git@nird.us:RubyFall2012/Peter.git
+   141519e..54ecabb  master -> master
+
+====
+
+(Go back to my pull-only set, and see if I get the change.)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ cd ../TestPull2/
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git pull
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From nird.us:RubyFall2012/Peter
+   141519e..54ecabb  master     -> renee_remote/master
+Updating 141519e..54ecabb
+Fast-forward
+ practice/push_test.txt |    1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ ls practice/
+push_test.txt  sample1.rb
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ cat practice/push_test.txt 
+hello
+
+====
+
+(Now remove it from my working set.)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ cd ../Midterm_Working/
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ rm practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git status -v
+# On branch master
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	deleted:    practice/push_test.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git rm practice/push_test.txt
+rm 'practice/push_test.txt'
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git status -v
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    practice/push_test.txt
+#
+diff --git a/practice/push_test.txt b/practice/push_test.txt
+deleted file mode 100644
+index ce01362..0000000
+--- a/practice/push_test.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-hello
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git commit -m "Removing the dummy file from the working set"
+[master aa2d710] Removing the dummy file from the working set
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git push renee_remote master
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 319 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@nird.us:RubyFall2012/Peter.git
+   54ecabb..aa2d710  master -> master
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ git status -v
+# On branch master
+nothing to commit (working directory clean)
+
+====
+
+(Go back to my pull-only set, and see if I get the change, removing the file.)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Midterm_Working$ cd ../TestPull2/
+Using /home/pgranger/.rvm/gems/ruby-1.9.3-p286 with gemset rubyfall2012
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+nothing to commit (working directory clean)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+* master
+  remotes/renee_remote/master
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git pull
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From nird.us:RubyFall2012/Peter
+   54ecabb..aa2d710  master     -> renee_remote/master
+Updating 54ecabb..aa2d710
+Fast-forward
+ practice/push_test.txt |    1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 practice/push_test.txt
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ ls practice/
+sample1.rb
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+nothing to commit (working directory clean)
+
+(And show that my pull-only copy has the full log)
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git log
+commit aa2d71012e844d8ea1d10a079bda50495c0c103b
+Author: Peter E. Granger <peter@granger.net>
+Date:   Sat Nov 10 13:41:34 2012 -0800
+
+    Removing the dummy file from the working set
+
+commit 54ecabb7bf671976dd7ffda4eacb4b02dfc62332
+Author: Peter E. Granger <peter@granger.net>
+Date:   Sat Nov 10 13:35:20 2012 -0800
+
+    Testing a push with a dummy file
+
+commit 141519e58030e60e60bca1c23dfd4dfbf581fdb4
+Author: Peter E. Granger <peter@granger.net>
+Date:   Sat Nov 10 12:15:54 2012 -0800
+
+    Minor change to sample
+
+commit b9ef14278f98973119ba24fd6b7e977b03bb1c6f
+Author: Peter E. Granger <peter@granger.net>
+Date:   Sat Nov 10 11:10:16 2012 -0800
+
+    More work to midterm
+
+commit 60830f7a9fdb909c3276714bc1acc1ec1b59d9d3
+Author: Peter E. Granger <peter@granger.net>
+Date:   Thu Nov 8 23:15:58 2012 -0800
+
+    Finished for the night
+
+commit 6faf6e1a89091c25da306f0b9becc959f99e89fb
+Author: Peter E. Granger <peter@granger.net>
+Date:   Thu Nov 8 22:31:38 2012 -0800
+
+    Working on midterm questions
+
+commit bb70c28d636e35d2f6de4bf9a76054c00e25f48a
+Author: Peter E. Granger <peter@granger.net>
+Date:   Thu Nov 8 21:15:12 2012 -0800
+
+    Add mid_term directory and files
+
+commit 4dfa9a362012793a6768c1e939da51394564a9a7
+Author: Peter E. Granger <peter@granger.net>
+Date:   Thu Nov 8 21:12:49 2012 -0800
+
+    Created midterm working directory
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ 
+

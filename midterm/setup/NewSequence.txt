@@ -1,0 +1,49 @@
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos$ git init TestPull2
+Initialized empty Git repository in /home/pgranger/classes/q1_ruby/git_repos/TestPull2/.git/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos$ cd TestPull2/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git remote add renee_remote git@nird.us:RubyFall2012/Peter.git
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ remote -v
+remote: command not found
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git remote -v
+renee_remote	git@nird.us:RubyFall2012/Peter.git (fetch)
+renee_remote	git@nird.us:RubyFall2012/Peter.git (push)
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git pull -u renee_remote
+remote: Counting objects: 30, done.
+remote: Compressing objects: 100% (27/27), done.
+remote: Total 30 (delta 9), reused 0 (delta 0)
+Unpacking objects: 100% (30/30), done.
+From nird.us:RubyFall2012/Peter
+ * [new branch]      master     -> renee_remote/master
+There are no candidates for merging among the refs that you just fetched.
+Generally this means that you provided a wildcard refspec which had no
+matches on the remote end.
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+  remotes/renee_remote/master
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git status -v
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch master
+fatal: Not a valid object name: 'master'.
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+  remotes/renee_remote/master
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git checkout master
+Branch master set up to track remote branch master from renee_remote.
+Already on 'master'
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch
+* master
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ git branch -a
+* master
+  remotes/renee_remote/master
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/TestPull2$ 
+

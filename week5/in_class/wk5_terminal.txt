@@ -1,0 +1,167 @@
+pgranger@PEGLinux:~$ ls
+classes  Documents  examples.desktop  Pictures  system     tmp           Videos
+Desktop  Downloads  Music             Public    Templates  ubuntu_setup
+pgranger@PEGLinux:~$ cd classes/
+pgranger@PEGLinux:~/classes$ q1
+pgranger@PEGLinux:~/classes/q1_ruby$ ls
+git_repos  important_notes  practice
+pgranger@PEGLinux:~/classes/q1_ruby$ mkdir git_test
+pgranger@PEGLinux:~/classes/q1_ruby$ git status
+fatal: Not a git repository (or any of the parent directories): .git
+pgranger@PEGLinux:~/classes/q1_ruby$ git init
+Initialized empty Git repository in /home/pgranger/classes/q1_ruby/.git/
+pgranger@PEGLinux:~/classes/q1_ruby$ ls
+git_repos  git_test  important_notes  practice
+pgranger@PEGLinux:~/classes/q1_ruby$ ls -la
+total 28
+drwxrwxr-x 7 pgranger pgranger 4096 Nov  6 18:02 .
+drwxrwxr-x 3 pgranger pgranger 4096 Oct 14 22:22 ..
+drwxrwxr-x 7 pgranger pgranger 4096 Nov  6 18:02 .git
+drwxrwxr-x 6 pgranger pgranger 4096 Nov  6 15:52 git_repos
+drwxrwxr-x 2 pgranger pgranger 4096 Nov  6 18:02 git_test
+drwxrwxr-x 2 pgranger pgranger 4096 Nov  4 09:58 important_notes
+drwxrwxr-x 4 pgranger pgranger 4096 Oct 14 22:50 practice
+pgranger@PEGLinux:~/classes/q1_ruby$ rm .git
+rm: cannot remove `.git': Is a directory
+pgranger@PEGLinux:~/classes/q1_ruby$ rmdir .git
+rmdir: failed to remove `.git': Directory not empty
+pgranger@PEGLinux:~/classes/q1_ruby$ rm -rf .git
+pgranger@PEGLinux:~/classes/q1_ruby$ cd git_test/
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git init
+Initialized empty Git repository in /home/pgranger/classes/q1_ruby/git_test/.git/
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ mkdir test2
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ touch test2/.gitkeep
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	test2/
+nothing added to commit but untracked files present (use "git add" to track)
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git add .
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git commit -m "test repo with test folder"
+[master (root-commit) abe1a5c] test repo with test folder
+ 0 files changed
+ create mode 100644 test2/.gitkeep
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ echo "hello" > hello.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ ls
+hello.txt  test2
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	hello.txt
+nothing added to commit but untracked files present (use "git add" to track)
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git add .
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git commit -m "added hello"
+[master 746e27d] added hello
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git log
+commit 746e27d59a40958a24d44ffe76a22918356a937b
+Author: Peter E. Granger <peter@granger.net>
+Date:   Tue Nov 6 18:05:00 2012 -0800
+
+    added hello
+
+commit abe1a5c26ec759ce83a65e4817fb9536def75d82
+Author: Peter E. Granger <peter@granger.net>
+Date:   Tue Nov 6 18:04:19 2012 -0800
+
+    test repo with test folder
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ echo "goodbye" >> hello.txt 
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   hello.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git diff
+diff --git a/hello.txt b/hello.txt
+index ce01362..a32119c 100644
+--- a/hello.txt
++++ b/hello.txt
+@@ -1 +1,2 @@
+ hello
++goodbye
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git add hello.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   hello.txt
+#
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git branch new_branch
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status -v
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   hello.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	in_class_terminal.txt
+diff --git a/hello.txt b/hello.txt
+index ce01362..a32119c 100644
+--- a/hello.txt
++++ b/hello.txt
+@@ -1 +1,2 @@
+ hello
++goodbye
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   hello.txt
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	in_class_terminal.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git add in_class_terminal.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git commit -m "More stuff"
+[master 3971c63] More stuff
+ 2 files changed, 110 insertions(+)
+ create mode 100644 in_class_terminal.txt
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git status
+# On branch master
+nothing to commit (working directory clean)
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ history | tail -5
+ 2034  git status
+ 2035  git add in_class_terminal.txt
+ 2036  git commit -m "More stuff"
+ 2037  git status
+ 2038  history | tail -5
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ history | tail -10
+ 2030  git add hello.txt
+ 2031  git status
+ 2032  git branch new_branch
+ 2033  git status -v
+ 2034  git status
+ 2035  git add in_class_terminal.txt
+ 2036  git commit -m "More stuff"
+ 2037  git status
+ 2038  history | tail -5
+ 2039  history | tail -10
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ git branch -a
+* master
+  new_branch
+pgranger@PEGLinux:~/classes/q1_ruby/git_test$ 
+

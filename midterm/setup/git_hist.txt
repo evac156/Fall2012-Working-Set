@@ -1,0 +1,35 @@
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos$ history | grep 1680 -B2 -A30
+ 1678  up
+ 1679  ls
+ 1680  git init Midterm_Working
+ 1681  cd Midterm_Working/
+ 1682  git status
+ 1683  cp ../RubyFall2012_Midterm/.gitignore .
+ 1684  history | grep push
+ 1685  cp -r ../RubyFall2012_Midterm/mid_term .
+ 1686  git status
+ 1687  git add .
+ 1688  git status
+ 1689  cd mid_term/
+ 1690  ls -la
+ 1691  up
+ 1692  rm -rf Midterm_Working/
+ 1693  git init Midterm_Working
+ 1694  cd Midterm_Working/
+ 1695  cp ../RubyFall2012_Midterm/.gitignore .
+ 1696  git status
+ 1697  more .gitignore 
+ 1698  cp ../RubyFall2012_Midterm/.rvmrc .
+ 1699  more .rvmrc 
+ 1700  git status
+ 1701  git add .
+ 1702  git status
+ 1703  git commit -m "Created midterm working directory"
+ 1704  cp -r ../RubyFall2012_Midterm/mid_term .
+ 1705  git status
+ 1706  cd mid_term/
+ 1707  ls
+ 1708  up
+ 1709  cd mid_term/
+ 1710  up
+
