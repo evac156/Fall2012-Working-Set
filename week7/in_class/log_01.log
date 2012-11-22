@@ -1,0 +1,444 @@
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/cucumber$ cucumber
+Feature: Converting metric
+  In order to pack for London
+  As a traveler
+  I want to be told the Celsius temperature in Fahrenheit
+
+  Scenario:                                      # features/converter.feature:6
+    Given I have entered 0 into the converter    # features/step_definitions/converter_steps.rb:1
+    And I select Celsius                         # features/step_definitions/converter_steps.rb:5
+    When I press convert                         # features/step_definitions/converter_steps.rb:9
+    Then the result should be 32.0 on the screen # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                      # features/converter.feature:12
+    Given I have entered 21 into the converter   # features/step_definitions/converter_steps.rb:1
+    And I select Celsius                         # features/step_definitions/converter_steps.rb:5
+    When I press convert                         # features/step_definitions/converter_steps.rb:9
+    Then the result should be 69.8 on the screen # features/step_definitions/converter_steps.rb:13
+
+2 scenarios (2 passed)
+8 steps (8 passed)
+0m0.005s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/cucumber$ ls
+features
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/cucumber$ ls features/
+converter.feature  step_definitions
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/cucumber$ cd ../../exercises/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ ls
+features
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/converter.feature:7
+    And I set the type to Fahrenheit           # features/converter.feature:8
+    When I press convert                       # features/converter.feature:9
+    Then the result returned should be 0.0     # features/converter.feature:10
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/converter.feature:13
+    And I set the type to Fahrenheit           # features/converter.feature:14
+    When I press convert                       # features/converter.feature:15
+    Then the result returned should be 23.9    # features/converter.feature:16
+
+Feature: Puppies are very cute and everyone wants one
+  In order to make everyone happy
+  As a puppy class programmer
+  I want to give everyone a cute virtual puppy
+
+  Scenario: The puppy is being pet # features/puppy.feature:6
+    Given we have a puppy          # features/puppy.feature:7
+    And its name is Fred           # features/puppy.feature:8
+    When we pet the puppy          # features/puppy.feature:9
+    Then the puppy wags its tail   # features/puppy.feature:10
+
+  Scenario: The puppy needs to go out     # features/puppy.feature:12
+    Given we have a puppy                 # features/puppy.feature:13
+    And its name is Bella                 # features/puppy.feature:14
+    When we ring the bell                 # features/puppy.feature:15
+    And it wags its tail                  # features/puppy.feature:16
+    Then we must take it out              # features/puppy.feature:17
+    And then it will not pee on the floor # features/puppy.feature:18
+
+4 scenarios (4 undefined)
+18 steps (18 undefined)
+0m0.014s
+
+You can implement step definitions for undefined steps with these snippets:
+
+Given /^I have entered (\d+) into the converter$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I set the type to Fahrenheit$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I press convert$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the result returned should be (\d+)\.(\d+)$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^we have a puppy$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^its name is Fred$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^we pet the puppy$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the puppy wags its tail$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^its name is Bella$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^we ring the bell$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^it wags its tail$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^we must take it out$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^then it will not pee on the floor$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+If you want snippets in a different programming language,
+just make sure a file with the appropriate file extension
+exists where cucumber looks for step definitions.
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ ls
+features
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber converter
+No such file or directory - converter (Errno::ENOENT)
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/feature_file.rb:55:in `initialize'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/feature_file.rb:55:in `open'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/feature_file.rb:55:in `source'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/feature_file.rb:37:in `parse'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime/features_loader.rb:28:in `block in load'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime/features_loader.rb:26:in `each'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime/features_loader.rb:26:in `load'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime/features_loader.rb:14:in `features'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime.rb:170:in `features'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/runtime.rb:46:in `run!'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/cli/main.rb:43:in `execute!'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/lib/cucumber/cli/main.rb:20:in `execute'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/gems/cucumber-1.2.1/bin/cucumber:14:in `<top (required)>'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/bin/cucumber:19:in `load'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/bin/cucumber:19:in `<main>'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/bin/ruby_noexec_wrapper:14:in `eval'
+/home/pgranger/.rvm/gems/ruby-1.9.3-p286@rubyfall2012/bin/ruby_noexec_wrapper:14:in `<main>'
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/converter.feature:7
+    And I set the type to Fahrenheit           # features/converter.feature:8
+    When I press convert                       # features/converter.feature:9
+    Then the result returned should be 0.0     # features/converter.feature:10
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/converter.feature:13
+    And I set the type to Fahrenheit           # features/converter.feature:14
+    When I press convert                       # features/converter.feature:15
+    Then the result returned should be 23.9    # features/converter.feature:16
+
+Feature: Puppies are very cute and everyone wants one
+  In order to make everyone happy
+  As a puppy class programmer
+  I want to give everyone a cute virtual puppy
+
+  Scenario: The puppy is being pet # features/puppy.feature:6
+    Given we have a puppy          # features/puppy.feature:7
+    And its name is Fred           # features/puppy.feature:8
+    When we pet the puppy          # features/puppy.feature:9
+    Then the puppy wags its tail   # features/puppy.feature:10
+
+  Scenario: The puppy needs to go out     # features/puppy.feature:12
+    Given we have a puppy                 # features/puppy.feature:13
+    And its name is Bella                 # features/puppy.feature:14
+    When we ring the bell                 # features/puppy.feature:15
+    And it wags its tail                  # features/puppy.feature:16
+    Then we must take it out              # features/puppy.feature:17
+    And then it will not pee on the floor # features/puppy.feature:18
+
+4 scenarios (4 undefined)
+18 steps (18 undefined)
+0m0.015s
+
+You can implement step definitions for undefined steps with these snippets:
+
+Given /^I have entered (\d+) into the converter$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^I set the type to Fahrenheit$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I press convert$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the result returned should be (\d+)\.(\d+)$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^we have a puppy$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^its name is Fred$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^we pet the puppy$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the puppy wags its tail$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given /^its name is Bella$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^we ring the bell$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^it wags its tail$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^we must take it out$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^then it will not pee on the floor$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ ls
+features
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:7:in `Given I have entered 32 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:13:in `Given I have entered 75 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+
+Feature: Puppies are very cute and everyone wants one
+  In order to make everyone happy
+  As a puppy class programmer
+  I want to give everyone a cute virtual puppy
+
+  Scenario: The puppy is being pet # features/puppy.feature:6
+    Given we have a puppy          # features/step_definitions/puppy_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/puppy_steps.rb:2:in `/^we have a puppy$/'
+      features/puppy.feature:7:in `Given we have a puppy'
+    And its name is Fred           # features/step_definitions/puppy_steps.rb:5
+    When we pet the puppy          # features/step_definitions/puppy_steps.rb:9
+    Then the puppy wags its tail   # features/step_definitions/puppy_steps.rb:13
+
+  Scenario: The puppy needs to go out     # features/puppy.feature:12
+    Given we have a puppy                 # features/step_definitions/puppy_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/puppy_steps.rb:2:in `/^we have a puppy$/'
+      features/puppy.feature:13:in `Given we have a puppy'
+    And its name is Bella                 # features/step_definitions/puppy_steps.rb:17
+    When we ring the bell                 # features/step_definitions/puppy_steps.rb:21
+    And it wags its tail                  # features/step_definitions/puppy_steps.rb:25
+    Then we must take it out              # features/step_definitions/puppy_steps.rb:29
+    And then it will not pee on the floor # features/step_definitions/puppy_steps.rb:33
+
+4 scenarios (4 pending)
+18 steps (14 skipped, 4 pending)
+0m0.017s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ ls
+features
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cd features/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises/features$ ls
+converter.feature  puppy.feature  step_definitions
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises/features$ mv puppy.feature puppy.feature.next
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises/features$ up
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:7:in `Given I have entered 32 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:13:in `Given I have entered 75 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+
+2 scenarios (2 pending)
+8 steps (6 skipped, 2 pending)
+0m0.011s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:7:in `Given I have entered 32 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:13:in `Given I have entered 75 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+
+2 scenarios (2 pending)
+8 steps (6 skipped, 2 pending)
+0m0.012s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:7:in `Given I have entered 32 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+      TODO (Cucumber::Pending)
+      ./features/step_definitions/converter_steps.rb:2:in `/^I have entered (\d+) into the converter$/'
+      features/converter.feature:13:in `Given I have entered 75 into the converter'
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+
+2 scenarios (2 pending)
+8 steps (6 skipped, 2 pending)
+0m0.011s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+      
+      expected: 23.9
+           got: 77.4
+      
+      (compared using ==)
+       (RSpec::Expectations::ExpectationNotMetError)
+      ./features/step_definitions/converter_steps.rb:14:in `/^the result returned should be (\d+)\.(\d+)$/'
+      features/converter.feature:16:in `Then the result returned should be 23.9'
+
+Failing Scenarios:
+cucumber features/converter.feature:12 # Scenario: 
+
+2 scenarios (1 failed, 1 passed)
+8 steps (1 failed, 7 passed)
+0m0.012s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cucumber
+Feature: Converting metric
+  In order to talk about the weather back home
+  As a traveler in London
+  I want to convert a Fahrenheit temperature to Celsius
+
+  Scenario:                                    # features/converter.feature:6
+    Given I have entered 32 into the converter # features/step_definitions/converter_steps.rb:1
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 0.0     # features/step_definitions/converter_steps.rb:13
+
+  Scenario:                                    # features/converter.feature:12
+    Given I have entered 75 into the converter # features/step_definitions/converter_steps.rb:1
+    And I set the type to Fahrenheit           # features/step_definitions/converter_steps.rb:5
+    When I press convert                       # features/step_definitions/converter_steps.rb:9
+    Then the result returned should be 23.9    # features/step_definitions/converter_steps.rb:13
+
+2 scenarios (2 passed)
+8 steps (8 passed)
+0m0.012s
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/exercises$ cd ../class_materials/minitest/
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/minitest$ ls
+advanced_book.rb  book_answers.rb  book.rb
+pgranger@PEGLinux:~/classes/q1_ruby/git_repos/Week7Fork/week7/class_materials/minitest$ 
+
